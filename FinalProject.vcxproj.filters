@@ -75,6 +75,9 @@
     <ClCompile Include="src\ModelTex.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="external\glad\glad.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\base.h">
@@ -222,6 +225,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\ModelTex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="external\glad\glad.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

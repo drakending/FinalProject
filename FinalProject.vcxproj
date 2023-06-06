@@ -71,8 +71,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>.\external;.\src;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>.\external;.\src;.\external\stb;$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
     <LibraryPath>.\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnabled>false</VcpkgEnabled>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,6 +89,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="external\glad\glad.c" />
     <ClCompile Include="external\stb\stb_image.cpp" />
     <ClCompile Include="external\stb\stb_vorbis.c" />
     <ClCompile Include="external\tiny_obj_loader.cc" />
@@ -158,6 +163,7 @@
     <ClCompile Include="src\storage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="external\glad\glad.h" />
     <ClInclude Include="external\stb\stb.h" />
     <ClInclude Include="external\stb\stb_connected_components.h" />
     <ClInclude Include="external\stb\stb_c_lexer.h" />
