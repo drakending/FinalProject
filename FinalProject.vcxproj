@@ -139,6 +139,8 @@
     <ClCompile Include="external\stb\stb_image.cpp" />
     <ClCompile Include="external\stb\stb_vorbis.c" />
     <ClCompile Include="external\tiny_obj_loader.cc" />
+    <ClCompile Include="src\ModelTex.cpp" />
+    <ClCompile Include="src\IntegrateModel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\base\application.cpp" />
@@ -178,6 +180,8 @@
     <ClInclude Include="external\stb\stb_voxel_render.h" />
     <ClInclude Include="external\stb\stretchy_buffer.h" />
     <ClInclude Include="external\tiny_obj_loader.h" />
+    <ClInclude Include="src\ModelTex.h" />
+    <ClInclude Include="src\IntegrateModel.h" />
     <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\base.h" />
     <ClInclude Include="src\base\application.h" />

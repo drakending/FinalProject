@@ -69,6 +69,12 @@
     <ClCompile Include="src\storage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="src\IntegrateModel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ModelTex.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\base.h">
@@ -210,6 +216,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="src\storage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\IntegrateModel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ModelTex.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
