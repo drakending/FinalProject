@@ -208,6 +208,15 @@
     <None Include="src\shader\model.fs" />
     <None Include="src\shader\model.vs" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="media\texture\african_head_diffuse.tga" />
+    <Image Include="media\texture\glass.png" />
+    <Image Include="media\texture\gold.png" />
+    <Image Include="media\texture\marble.png" />
+    <Image Include="media\texture\paper.png" />
+    <Image Include="media\texture\texture.png" />
+    <Image Include="media\texture\wood.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
