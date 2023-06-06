@@ -7,10 +7,10 @@ Game::scene::scene(storage& storageManager)
 	modelShader->attachFragmentShaderFromFile("./src/shader/model.fs");
 	modelShader->link();
 
-	std::shared_ptr<Texture2D> texture = storageManager.getTexture("gold");
+	std::shared_ptr<Texture2D> texture = storageManager.getTexture("texture");
 	TextureList.push_back(texture);
 
-	std::shared_ptr<Model> _model = storageManager.getModel("cone");
+	std::shared_ptr<Model> _model = storageManager.getModel("african_head");
 	NormalModelList.push_back(_model);
 
 	_camera.reset(new PerspectiveCamera(
