@@ -1,6 +1,6 @@
-﻿#include "storage.h"
+﻿#include "StorageManager.h"
 #include <filesystem>
-Game::storage::storage()
+Game::StorageManager::StorageManager()
 {
 	std::filesystem::path path(modelRootDir);
 	if (!std::filesystem::exists(path))
@@ -46,11 +46,11 @@ Game::storage::storage()
 	}
 }
 
-Game::storage::~storage()
+Game::StorageManager::~StorageManager()
 {
 
 }
-bool Game::storage::loadModel(std::string name)
+bool Game::StorageManager::loadModel(std::string name)
 {
 	std::shared_ptr<Model> _model;
 	_model.reset(new Model(modelRootDir + name + modelPostFix));
@@ -58,21 +58,26 @@ bool Game::storage::loadModel(std::string name)
 	return true;
 }
 
-std::shared_ptr<Model> Game::storage::getModel(std::string name)
+std::shared_ptr<Model> Game::StorageManager::getModel(std::string name)
 {
 	return modelStorage[name];
 }
 
-bool Game::storage::loadTexture(std::string name)
+bool Game::StorageManager::loadTexture(std::string name)
 {
 	std::shared_ptr<Texture2D> texture = std::make_shared<ImageTexture2D>(textureRootDir + name);
+	texture.get()->name = name.substr(0, name.rfind('.'));
 	textureStorage[name.substr(0, name.rfind('.'))] = texture;
+
 	return true;
 }
 
-std::shared_ptr<Texture2D> Game::storage::getTexture(std::string name)
+std::shared_ptr<Texture2D> Game::StorageManager::getTexture(std::string name)
 {
-	return textureStorage[name];
+	if (textureStorage.find(name) != textureStorage.end())
+		return textureStorage[name];
+	else
+		return nullptr;
 }
 
 

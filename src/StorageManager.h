@@ -9,11 +9,11 @@
 #include<base/camera.h>
 #include<base/light.h>
 namespace Game {
-	class storage
+	class StorageManager
 	{
 	public:
-		storage();
-		~storage();
+		StorageManager();
+		~StorageManager();
 		bool loadModel(std::string name);
 		std::shared_ptr<Model> getModel(std::string name);
 		bool loadTexture(std::string name);

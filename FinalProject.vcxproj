@@ -81,7 +81,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>D:\projectstore\FinalProject\external;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -140,10 +140,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\LightManager.cpp" />
+    <ClCompile Include="src\CameraManager.cpp" />
     <ClCompile Include="external\glad\glad.c" />
+    <ClCompile Include="external\imgui\imgui.cpp" />
+    <ClCompile Include="external\imgui\imgui_demo.cpp" />
+    <ClCompile Include="external\imgui\imgui_draw.cpp" />
+    <ClCompile Include="external\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="external\imgui\imgui_tables.cpp" />
+    <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="external\stb\stb_image.cpp" />
     <ClCompile Include="external\stb\stb_vorbis.c" />
     <ClCompile Include="external\tiny_obj_loader.cc" />
+    <ClCompile Include="src\gui.cpp" />
     <ClCompile Include="src\ModelTex.cpp" />
     <ClCompile Include="src\IntegrateModel.cpp" />
     <ClCompile Include="main.cpp" />
@@ -160,10 +170,20 @@
     <ClCompile Include="src\base\texture2d.cpp" />
     <ClCompile Include="src\base\texture_cubemap.cpp" />
     <ClCompile Include="src\base\transform.cpp" />
-    <ClCompile Include="src\storage.cpp" />
+    <ClCompile Include="src\StorageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\LightManager.h" />
+    <ClInclude Include="src\CameraManager.h" />
     <ClInclude Include="external\glad\glad.h" />
+    <ClInclude Include="external\imgui\imconfig.h" />
+    <ClInclude Include="external\imgui\imgui.h" />
+    <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="external\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="external\imgui\imgui_internal.h" />
+    <ClInclude Include="external\imgui\imstb_rectpack.h" />
+    <ClInclude Include="external\imgui\imstb_textedit.h" />
+    <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="external\stb\stb.h" />
     <ClInclude Include="external\stb\stb_connected_components.h" />
     <ClInclude Include="external\stb\stb_c_lexer.h" />
@@ -186,6 +206,7 @@
     <ClInclude Include="external\stb\stb_voxel_render.h" />
     <ClInclude Include="external\stb\stretchy_buffer.h" />
     <ClInclude Include="external\tiny_obj_loader.h" />
+    <ClInclude Include="src\gui.h" />
     <ClInclude Include="src\ModelTex.h" />
     <ClInclude Include="src\IntegrateModel.h" />
     <ClInclude Include="src\scene.h" />
@@ -212,11 +233,7 @@
     <ClInclude Include="src\base\transform.h" />
     <ClInclude Include="src\base\uniform_buffer.h" />
     <ClInclude Include="src\base\vertex.h" />
-    <ClInclude Include="src\storage.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="src\shader\model.fs" />
-    <None Include="src\shader\model.vs" />
+    <ClInclude Include="src\StorageManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="media\texture\african_head_diffuse.tga" />

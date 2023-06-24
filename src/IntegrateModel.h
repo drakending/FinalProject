@@ -11,6 +11,8 @@ class IntegrateModel
 public:
 	std::vector<ModelTex> subModel;
 	Transform transform;
+	std::string name;
+
 	void attach(ModelTex& t)
 	{
 		subModel.push_back(t);
