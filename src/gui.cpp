@@ -147,6 +147,11 @@ void gui::newFrame()
 				}
 				if (ImGui::Button("look at this"))
 				{
+					glm::vec3 min = t2._model->getBoundingBox().min;
+					glm::vec3 max = t2._model->getBoundingBox().max;
+					GLfloat diagonal = sqrtf(powf(max.x - min.x, 2) +powf(max.y - min.y, 2) + powf(max.z - min.z, 2));
+					cameraManager->camera->transform.position = glm::vec3(t.transform.position.x, t.transform.position.y,
+						(min.z+max.z)/2 + diagonal * 1.5);
 					cameraManager->camera->transform.lookAt(t.transform.position);
 				}
 				if (ImGui::Button("rotate around this"))
@@ -155,8 +160,9 @@ void gui::newFrame()
 					cameraManager->rotateCenter = t.transform.position;
 					cameraManager->rotateLength = glm::length(t.transform.position - cameraManager->camera->transform.position);
 					cameraManager->rotateMode = true;
-					cameraManager->rotateAngle = 0;
-					cameraManager->rotateMode = true;
+					//感觉继续rotate的时候还是不要重新开始的好
+					//cameraManager->rotateAngle = 0;
+					//cameraManager->rotateMode = true;
 
 				}
 				ImGui::Separator();

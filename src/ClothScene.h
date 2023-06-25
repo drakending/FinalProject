@@ -3,6 +3,7 @@
 #include<base/model.h>
 #include<StorageManager.h>
 #include<cloth/Cloth.h>
+#include"base/skybox.h"	//gai
 namespace Game {
 	class ClothScene :public scene
 	{
@@ -10,6 +11,7 @@ namespace Game {
 		ClothScene(StorageManager* storageManager);
 		Cloth cloth;
 		StorageManager* storageManager;
+		std::unique_ptr<SkyBox> _skybox;	//gai
 		std::shared_ptr<Texture2D> clothTexture;
 		std::unique_ptr<GLSLProgram> clothShader;
 		std::shared_ptr<PerspectiveCamera> _camera;

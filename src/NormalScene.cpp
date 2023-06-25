@@ -1,5 +1,14 @@
 ﻿#include "NormalScene.h"
 
+//gai
+//const std::vector<std::string> skyboxTextureRelPaths = {
+//	"../../media/texture/right.jpg", "../../media/texture/left.jpg",  "../../media/texture/top.jpg",
+//	"../../media/texture/bottom.jpg",  "../../media/texture/front.jpg", "../../media/texture/back.jpg" };
+
+const std::vector<std::string> skyboxTextureRelPaths = {
+	"./media/texture/right.jpg", "./media/texture/left.jpg",  "./media/texture/top.jpg",
+	"./media/texture/bottom.jpg",  "./media/texture/front.jpg", "./media/texture/back.jpg" };
+
 Game::NormalScene::NormalScene(StorageManager* storageManager)
 {
 	modelShader.reset(new GLSLProgram());
@@ -45,6 +54,13 @@ Game::NormalScene::NormalScene(StorageManager* storageManager)
 	im.subModel.push_back(t3);
 	im.name = "black people";
 	IntegrateModelList.push_back(im);
+
+	// init skybox
+	std::vector<std::string> skyboxTextureFullPaths;	//gai
+	for (size_t i = 0; i < skyboxTextureRelPaths.size(); ++i) {
+		skyboxTextureFullPaths.push_back(skyboxTextureRelPaths[i]);
+	}
+	_skybox.reset(new SkyBox(skyboxTextureFullPaths));
 
 
 	_camera.reset(new PerspectiveCamera(
@@ -179,6 +195,8 @@ void Game::NormalScene::draw()
 	lightShader->setUniformMat4("projection", _camera->getProjectionMatrix());
 	lightShader->setUniformVec3("lightColor", _pointLight->color);
 	lightCube->draw();
+
+	_skybox->draw(_camera->getProjectionMatrix(), _camera->getViewMatrix());	//gai
 }
 
 void Game::NormalScene::updateDirectionalLightSpaceMatrix()

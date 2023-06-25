@@ -1,5 +1,13 @@
 ﻿#include "BasicScene.h"
 
+//const std::vector<std::string> skyboxTextureRelPaths = {
+//	"../../media/texture/right.jpg", "../../media/texture/left.jpg",  "../../media/texture/top.jpg",
+//	"../../media/texture/bottom.jpg",  "../../media/texture/front.jpg", "../../media/texture/back.jpg" };
+
+const std::vector<std::string> skyboxTextureRelPaths = {
+	"./media/texture/right.jpg", "./media/texture/left.jpg",  "./media/texture/top.jpg",
+	"./media/texture/bottom.jpg",  "./media/texture/front.jpg", "./media/texture/back.jpg" };
+
 Game::BasicScene::BasicScene(StorageManager* storageManager)
 {
 	modelShader.reset(new GLSLProgram());
@@ -20,6 +28,13 @@ Game::BasicScene::BasicScene(StorageManager* storageManager)
 	loadModel("cylinder", storageManager);
 	loadModel("prism", storageManager);
 	currentModel = modelList["cone"];
+
+	// init skybox
+	std::vector<std::string> skyboxTextureFullPaths;	//gai
+	for (size_t i = 0; i < skyboxTextureRelPaths.size(); ++i) {
+		skyboxTextureFullPaths.push_back(skyboxTextureRelPaths[i]);
+	}
+	_skybox.reset(new SkyBox(skyboxTextureFullPaths));
 
 	parameter["cone_radius"] = 1.0;
 	parameter["cone_height"] = 1.0;
@@ -77,6 +92,8 @@ void Game::BasicScene::draw()
 	lightShader->setUniformMat4("projection", _camera->getProjectionMatrix());
 	lightShader->setUniformVec3("lightColor", _pointLight->color);
 	lightCube->draw();
+
+	_skybox->draw(_camera->getProjectionMatrix(), _camera->getViewMatrix());	//gai
 }
 
 void Game::BasicScene::loadModel(const char* name, StorageManager* storageManager)

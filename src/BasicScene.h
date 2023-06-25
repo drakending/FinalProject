@@ -6,6 +6,7 @@
 #include<base/texture2d.h>
 #include<base/camera.h>
 #include<base/light.h>
+#include"base/skybox.h"	//gai
 #include"StorageManager.h"
 namespace Game {
 	class BasicScene :public scene
@@ -20,6 +21,7 @@ namespace Game {
 		std::shared_ptr<PointLight> _pointLight;
 		std::unique_ptr<GLSLProgram> modelShader;
 		std::unique_ptr<GLSLProgram> lightShader;
+		std::unique_ptr<SkyBox> _skybox;	//gai
 		std::shared_ptr<Model> lightCube;
 		glm::vec3 diffuseTex, ambientTex, specularTex;
 		Transform transform;

@@ -1,5 +1,9 @@
 ﻿#include "ClothScene.h"
 
+const std::vector<std::string> skyboxTextureRelPaths = {
+	"./media/texture/right.jpg", "./media/texture/left.jpg",  "./media/texture/top.jpg",
+	"./media/texture/bottom.jpg",  "./media/texture/front.jpg", "./media/texture/back.jpg" };
+
 Game::ClothScene::ClothScene(StorageManager* storageManager) :cloth(glm::vec3(-3.2, 2.4, -8.6), 6, 6)
 {
 	this->storageManager = storageManager;
@@ -20,6 +24,13 @@ Game::ClothScene::ClothScene(StorageManager* storageManager) :cloth(glm::vec3(-3
 	_pointLight->kl = 0.09f;
 	_pointLight->kq = 0.032f;
 	running = true;
+
+	// init skybox
+	std::vector<std::string> skyboxTextureFullPaths;	//gai
+	for (size_t i = 0; i < skyboxTextureRelPaths.size(); ++i) {
+		skyboxTextureFullPaths.push_back(skyboxTextureRelPaths[i]);
+	}
+	_skybox.reset(new SkyBox(skyboxTextureFullPaths));
 }
 
 void Game::ClothScene::draw()
@@ -81,6 +92,8 @@ void Game::ClothScene::draw()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 	glUseProgram(0);
+
+	_skybox->draw(_camera->getProjectionMatrix(), _camera->getViewMatrix());
 }
 
 void Game::ClothScene::initRenderResource()

@@ -10,6 +10,7 @@
 #include<base/framebuffer.h>
 #include<base/texture_cubemap.h>
 #include<scene.h>
+#include"base/skybox.h"	//gai
 #include<StorageManager.h>
 #include<IntegrateModel.h>
 namespace Game
@@ -23,6 +24,7 @@ namespace Game
 		std::shared_ptr<PointLight> _pointLight;
 		std::unique_ptr<GLSLProgram> modelShader;
 		std::unique_ptr<GLSLProgram> lightShader;
+		std::unique_ptr<SkyBox> _skybox;	//gai
 		std::shared_ptr<Model> lightCube;
 		NormalScene(StorageManager* storageManger);
 
