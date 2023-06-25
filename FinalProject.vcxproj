@@ -140,6 +140,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ClothManager.cpp" />
+    <ClCompile Include="src\ClothScene.cpp" />
+    <ClCompile Include="src\cloth\Cloth.cpp" />
+    <ClCompile Include="src\BasicScene.cpp" />
+    <ClCompile Include="src\scene.cpp" />
     <ClCompile Include="src\LightManager.cpp" />
     <ClCompile Include="src\CameraManager.cpp" />
     <ClCompile Include="external\glad\glad.c" />
@@ -157,7 +162,7 @@
     <ClCompile Include="src\ModelTex.cpp" />
     <ClCompile Include="src\IntegrateModel.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\scene.cpp" />
+    <ClCompile Include="src\NormalScene.cpp" />
     <ClCompile Include="src\base\application.cpp" />
     <ClCompile Include="src\base\camera.cpp" />
     <ClCompile Include="src\base\framebuffer.cpp" />
@@ -173,6 +178,13 @@
     <ClCompile Include="src\StorageManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ClothManager.h" />
+    <ClInclude Include="src\ClothScene.h" />
+    <ClInclude Include="src\cloth\Cloth.h" />
+    <ClInclude Include="src\BasicScene.h" />
+    <ClInclude Include="src\cloth\ClothPoint.h" />
+    <ClInclude Include="src\cloth\ClothSpring.h" />
+    <ClInclude Include="src\scene.h" />
     <ClInclude Include="src\LightManager.h" />
     <ClInclude Include="src\CameraManager.h" />
     <ClInclude Include="external\glad\glad.h" />
@@ -209,7 +221,7 @@
     <ClInclude Include="src\gui.h" />
     <ClInclude Include="src\ModelTex.h" />
     <ClInclude Include="src\IntegrateModel.h" />
-    <ClInclude Include="src\scene.h" />
+    <ClInclude Include="src\NormalScene.h" />
     <ClInclude Include="src\base.h" />
     <ClInclude Include="src\base\application.h" />
     <ClInclude Include="src\base\bounding_box.h" />

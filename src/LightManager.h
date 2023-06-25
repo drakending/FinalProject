@@ -5,8 +5,8 @@ namespace Game {
 	class LightManager
 	{
 	public:
-		std::shared_ptr<DirectionalLight> directionalLight;
-		std::shared_ptr<PointLight> pointLight;
+		DirectionalLight* directionalLight;
+		PointLight* pointLight;
 	};
 
 }

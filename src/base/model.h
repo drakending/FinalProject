@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <string>
 #include <vector>
@@ -10,63 +10,65 @@
 
 class Model {
 public:
-    Model(const std::string& filepath);
+	Model(const std::string& filepath);
 
-    Model(const std::vector<Vertex>& vertices, const std::vector<uint32_t>& indices);
+	Model(const std::vector<Vertex>& vertices, const std::vector<uint32_t>& indices);
 
-    Model(Model&& rhs) noexcept;
+	Model(Model&& rhs) noexcept;
 
-    virtual ~Model();
+	virtual ~Model();
 
-    GLuint getVao() const;
+	GLuint getVao() const;
 
-    GLuint getBoundingBoxVao() const;
+	GLuint getBoundingBoxVao() const;
 
-    size_t getVertexCount() const;
+	size_t getVertexCount() const;
 
-    size_t getFaceCount() const;
+	size_t getFaceCount() const;
 
-    BoundingBox getBoundingBox() const;
+	BoundingBox getBoundingBox() const;
 
-    virtual void draw() const;
+	virtual void draw() const;
 
-    virtual void drawBoundingBox() const;
+	virtual void drawBoundingBox() const;
 
-    const std::vector<uint32_t>& getIndices() const {
-        return _indices;
-    }
-    const std::vector<Vertex>& getVertices() const {
-        return _vertices;
-    }
-    const Vertex& getVertex(int i) const {
-        return _vertices[i];
-    }
+	const std::vector<uint32_t>& getIndices() const {
+		return _indices;
+	}
+	const std::vector<Vertex>& getVertices() const {
+		return _vertices;
+	}
+	const Vertex& getVertex(int i) const {
+		return _vertices[i];
+	}
+	void generateComplexVertices();
 
 public:
-    Transform transform;
+	bool TBN_ = false;
+	Transform transform;
 
 protected:
-    // vertices of the table represented in model's own coordinate
-    std::vector<Vertex> _vertices;
-    std::vector<uint32_t> _indices;
+	// vertices of the table represented in model's own coordinate
+	std::vector<Vertex> _vertices;
+	std::vector<uint32_t> _indices;
+	std::vector<float> _complexVertices;
+	// bounding box
+	BoundingBox _boundingBox;
 
-    // bounding box
-    BoundingBox _boundingBox;
+	// opengl objects
+	GLuint _vao = 0;
+	GLuint _vbo = 0;
+	GLuint _ebo = 0;
 
-    // opengl objects
-    GLuint _vao = 0;
-    GLuint _vbo = 0;
-    GLuint _ebo = 0;
+	GLuint _boxVao = 0;
+	GLuint _boxVbo = 0;
+	GLuint _boxEbo = 0;
 
-    GLuint _boxVao = 0;
-    GLuint _boxVbo = 0;
-    GLuint _boxEbo = 0;
+	void computeBoundingBox();
 
-    void computeBoundingBox();
+	void initGLResources();
 
-    void initGLResources();
+	void initBoxGLResources();
 
-    void initBoxGLResources();
-
-    void cleanup();
+	void cleanup();
 };

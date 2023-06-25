@@ -6,7 +6,7 @@ namespace Game {
 	class CameraManager
 	{
 	public:
-		std::shared_ptr<Camera> camera;
+		Camera* camera;
 		glm::vec3 rotateCenter;
 		float rotateLength;
 		float moveVel = 0.1;
@@ -14,7 +14,7 @@ namespace Game {
 		float scrollVel = 0.04;
 		float rotateAngle = 0;
 		void registerCamera(std::shared_ptr<Camera> camera) {
-			this->camera = camera;
+			this->camera = camera.get();
 		}
 		bool wanderMode;
 		bool rotateMode;
@@ -41,7 +41,7 @@ namespace Game {
 
 			if (input.mouse.scroll.yOffset != 0)
 			{
-				PerspectiveCamera* cam = dynamic_cast<PerspectiveCamera*>(camera.get());
+				PerspectiveCamera* cam = dynamic_cast<PerspectiveCamera*>(camera);
 				if (cam->fovy + scrollVel * input.mouse.scroll.yOffset < 1.2 && cam->fovy + scrollVel * input.mouse.scroll.yOffset>0.2)
 					cam->fovy += scrollVel * input.mouse.scroll.yOffset;
 			}
@@ -50,7 +50,6 @@ namespace Game {
 			if (wanderMode)
 			{
 				if (input.mouse.move.xNow != input.mouse.move.xOld) {
-					std::cout << "mouse move in x direction" << std::endl;
 
 					float mouse_movement_in_x_direction = input.mouse.move.xNow - input.mouse.move.xOld;
 					float angle = -rotateVel * mouse_movement_in_x_direction;
@@ -59,7 +58,6 @@ namespace Game {
 					// -----------------------------------------------------------------------------
 				}
 				if (input.mouse.move.yNow != input.mouse.move.yOld) {
-					std::cout << "mouse move in y direction" << std::endl;
 					float mouse_movement_in_y_direction = input.mouse.move.yNow - input.mouse.move.yOld;
 					float angle = -rotateVel * mouse_movement_in_y_direction;
 					glm::quat q(cos(angle / 2), sin(angle / 2), 0, 0);

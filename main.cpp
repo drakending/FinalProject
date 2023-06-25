@@ -12,6 +12,10 @@
 #include<StorageManager.h>
 #include<CameraManager.h>
 #include<LightManager.h>
+#include<ClothManager.h>
+#include<NormalScene.h>
+#include<BasicScene.h>
+#include<ClothScene.h>
 #include<gui.h>
 using namespace Game;
 Input input;
@@ -76,20 +80,35 @@ int main()
 	StorageManager storageManger;
 	CameraManager cameraManager;
 	LightManager lightManager;
-	scene defaultScene(&storageManger);
+	ClothManager clothManager;
+
+	NormalScene defaultScene(&storageManger);
+	defaultScene.sceneName = "default scene";
 	cameraManager.registerCamera(defaultScene._camera);
-	lightManager.directionalLight = defaultScene._light;
-	lightManager.pointLight = defaultScene._pointLight;
+	lightManager.directionalLight = defaultScene._light.get();
+	lightManager.pointLight = defaultScene._pointLight.get();
+
+	BasicScene basicScene(&storageManger);
+	basicScene.sceneName = "basic scene";
+	ClothScene clothScene(&storageManger);
+	clothScene.sceneName = "cloth scene";
+
+
 	gui defaultGui(&defaultScene);
 	defaultGui.initEnv(window);
 	defaultGui.cameraManager = &cameraManager;
 	defaultGui.lightManager = &lightManager;
+	defaultGui.clothManager = &clothManager;
+	defaultGui.sceneList.push_back(&defaultScene);
+	defaultGui.sceneList.push_back(&basicScene);
+	defaultGui.sceneList.push_back(&clothScene);
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glEnable(GL_DEPTH_TEST);
 		cameraManager.handleInput(input);
-		defaultScene.draw();
+		clothManager.handleInput(input);
+		defaultGui.scene_->draw();
 		defaultGui.newFrame();
 		glfwSwapBuffers(window);
 		glfwPollEvents();

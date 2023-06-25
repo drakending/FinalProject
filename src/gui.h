@@ -3,16 +3,25 @@
 #include<imgui/imgui_impl_glfw.h>
 #include<imgui/imgui_impl_opengl3.h>
 #include<scene.h>
+#include<NormalScene.h>
+#include<BasicScene.h>
+#include<ClothScene.h>
 #include<CameraManager.h>
 #include<LightManager.h>
+#include<ClothManager.h>
 class gui
 {
-	Game::scene* scene_;
 
 public:
+	std::vector<Game::scene*> sceneList;
+	Game::scene* scene_;
 	Game::CameraManager* cameraManager;
 	Game::LightManager* lightManager;
+	Game::ClothManager* clothManager;
+
 	gui(Game::scene* scene);
+	void cameraPanel();
+	void lightPanel();
 	void initEnv(GLFWwindow* window) {
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
